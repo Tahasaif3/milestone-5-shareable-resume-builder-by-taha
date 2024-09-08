@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shareable Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!--Header-->
+    <header>
+       <h1>Shareable Resume Builder</h1>
+    </header>
+    <form id="resumeForm" action="">
+        <!--Personal Information-->
+        <fieldset>
+            <legend>Personal Information</legend>
+
+           <label for="username">Your Resume URL:</label>
+           <input type="text" id="username" name="username" required><br/>
+
+
+            <label for="name">Name: </label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email: </label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone: </label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="address">Address </label>
+            <input type="address" id="address" name="address" required>
+
+            <!--Profile Picture-->
+            <label for="profilePicture">Profile Picture </label>
+            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+       
+        </fieldset>
+
+        <!-- Education -->
+        <fieldset>
+            <legend>Education</legend>
+            <label for="education">Education</label>
+            <textarea id="education" name="education" rows="4" required></textarea>
+        </fieldset>   
+        <!--Experience-->
+        <fieldset>
+            <legend>Experience</legend>
+            <label for="experience">Experience</label>
+            <textarea id="experience" name="experience" rows="4" required></textarea>
+        </fieldset>
+        <!--Skills-->
+        <fieldset>
+            <legend>Skills</legend>
+            <label for="skills">Skills</label>
+            <textarea id="skills" name="skills" rows="4" required></textarea>
+        </fieldset>
+
+         <!--Hobbies-->
+         <fieldset>
+            <legend>Hobbies</legend>
+            <label for="hobbies">Hobbies</label>
+            <textarea id="hobbies" name="hobbies" rows="4" required></textarea>
+        </fieldset>
+
+        <!--button-->
+        <button type="submit">Generate Your Resume</button>
+        
+    </form>
+
+    <div id="resumeOutput">
+        <!--Resume will be Generated Here-->
+    </div>
+
+
+    <footer>
+        <p>Made by Taha Saif</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
