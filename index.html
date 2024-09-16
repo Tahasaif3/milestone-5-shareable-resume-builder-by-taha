@@ -3,76 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shareable Resume Builder</title>
+    <title>Dynamic Shareable Resume Builder</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!--Header-->
     <header>
-       <h1>Shareable Resume Builder</h1>
+        <h1>Dynamic Shareable Resume Builder</h1>
     </header>
-    <form id="resumeForm" action="">
-        <!--Personal Information-->
+    
+    <form id="resumeForm">
         <fieldset>
             <legend>Personal Information</legend>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
 
-           <label for="username">Your Resume URL:</label>
-           <input type="text" id="username" name="username" required><br/>
-
-
-            <label for="name">Name: </label>
+            <label for="name">Name:</label>
             <input type="text" id="name" name="name" required>
 
-            <label for="email">Email: </label>
+            <label for="email">Email:</label>
             <input type="email" id="email" name="email" required>
 
-            <label for="phone">Phone: </label>
+            <label for="phone">Mobile Number:</label>
             <input type="tel" id="phone" name="phone" required>
 
-            <label for="address">Address </label>
-            <input type="address" id="address" name="address" required>
+            <label for="address">Address:</label>
+            <input type="text" id="address" name="address" required>
 
-            <!--Profile Picture-->
-            <label for="profilePicture">Profile Picture </label>
+            <label for="profilePicture">Profile Picture:</label>
             <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
-       
         </fieldset>
 
-        <!-- Education -->
         <fieldset>
             <legend>Education</legend>
-            <label for="education">Education</label>
-            <textarea id="education" name="education" rows="4" required></textarea>
-        </fieldset>   
-        <!--Experience-->
+            <div id="educationEntries">
+                <div class="education-entry">
+                    <input type="text" name="qualification[]" placeholder="Qualification" required>
+                    <input type="number" name="year[]" placeholder="Year of Passing" required>
+                    <input type="text" name="grade[]" placeholder="Grade/Percentage" required>
+                    <input type="text" name="school[]" placeholder="School/Institution Name" required>
+                </div>
+            </div>
+            <button type="button" id="addEducation">Add Qualification</button>
+        </fieldset>
+
         <fieldset>
             <legend>Experience</legend>
-            <label for="experience">Experience</label>
-            <textarea id="experience" name="experience" rows="4" required></textarea>
+            <div id="experienceEntries">
+                <div class="experience-entry">
+                    <input type="text" name="company[]" placeholder="Company Name" required>
+                    <input type="text" name="role[]" placeholder="Your Role" required>
+                    <input type="text" name="startDate[]" placeholder="Start Date (MM/YYYY)" required>
+                    <input type="text" name="endDate[]" placeholder="End Date (MM/YYYY or Present)" required>
+                    <textarea name="responsibilities[]" placeholder="Key Responsibilities" rows="3" required></textarea>
+                </div>
+            </div>
+            <button type="button" id="addExperience">Add Experience</button>
         </fieldset>
-        <!--Skills-->
+
         <fieldset>
             <legend>Skills</legend>
-            <label for="skills">Skills</label>
-            <textarea id="skills" name="skills" rows="4" required></textarea>
+            <div id="skillsEntries">
+                <input type="text" name="skills[]" placeholder="Enter a skill" required>
+            </div>
+            <button type="button" id="addSkill">Add Skill</button>
         </fieldset>
 
-         <!--Hobbies-->
-         <fieldset>
+        <fieldset>
             <legend>Hobbies</legend>
-            <label for="hobbies">Hobbies</label>
-            <textarea id="hobbies" name="hobbies" rows="4" required></textarea>
+            <div id="hobbiesEntries">
+                <input type="text" name="hobbies[]" placeholder="Enter a hobby" required>
+            </div>
+            <button type="button" id="addHobby">Add Hobby</button>
         </fieldset>
 
-        <!--button-->
         <button type="submit">Generate Your Resume</button>
-        
     </form>
 
     <div id="resumeOutput">
-        <!--Resume will be Generated Here-->
+        <!-- Resume will be generated here -->
     </div>
 
+    <div id="shareDownloadContainer" style="display: none;">
+        <input type="text" id="shareableUrl" readonly>
+        <button id="copyShareableUrl">Copy Shareable URL</button>
+        <button id="downloadResume">Download Resume</button>
+    </div>
 
     <footer>
         <p>Made by Taha Saif</p>
