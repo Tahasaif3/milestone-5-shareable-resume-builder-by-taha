@@ -3,96 +3,323 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Shareable Resume Builder</title>
+    <title>Professional Resume Builder</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Dynamic Shareable Resume Builder</h1>
-    </header>
+    <div class="page-wrapper">
+        <header>
+            <div class="logo-container">
+                <i class="fas fa-file-alt logo-icon"></i>
+                <h1>Professional Resume Builder</h1>
+            </div>
+            <p class="tagline">Create, customize, and share your professional resume in minutes</p>
+        </header>
+        
+        <main>
+            <div class="container">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="form-section">Create Resume</button>
+                    <button class="tab-btn" data-tab="preview-section">Preview</button>
+                </div>
+                
+                <div id="form-section" class="tab-content active">
+                    <form id="resumeForm">
+                        <div class="progress-bar">
+                            <div class="progress-step active" data-step="1">
+                                <div class="step-number">1</div>
+                                <div class="step-label">Personal</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-step="2">
+                                <div class="step-number">2</div>
+                                <div class="step-label">Education</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-step="3">
+                                <div class="step-number">3</div>
+                                <div class="step-label">Experience</div>
+                            </div>
+                            <div class="progress-line"></div>
+                            <div class="progress-step" data-step="4">
+                                <div class="step-number">4</div>
+                                <div class="step-label">Skills</div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step active" data-step="1">
+                            <h2>Personal Information</h2>
+                            <div class="form-group">
+                                <label for="username">Username <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <i class="fas fa-user input-icon"></i>
+                                    <input type="text" id="username" name="username" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="name">Full Name <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <i class="fas fa-id-card input-icon"></i>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="email">Email <span class="required">*</span></label>
+                                    <div class="input-group">
+                                        <i class="fas fa-envelope input-icon"></i>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="phone">Mobile Number <span class="required">*</span></label>
+                                    <div class="input-group">
+                                        <i class="fas fa-phone input-icon"></i>
+                                        <input type="tel" id="phone" name="phone" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="address">Address <span class="required">*</span></label>
+                                <div class="input-group">
+                                    <i class="fas fa-map-marker-alt input-icon"></i>
+                                    <input type="text" id="address" name="address" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="profilePicture">Profile Picture <span class="required">*</span></label>
+                                <div class="file-upload">
+                                    <div class="file-upload-preview">
+                                        <img id="profilePreview" src="https://via.placeholder.com/150?text=Upload+Photo" alt="Profile Preview">
+                                    </div>
+                                    <label for="profilePicture" class="file-upload-label">
+                                        <i class="fas fa-cloud-upload-alt"></i> Choose a file
+                                    </label>
+                                    <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
+                                    <span id="file-name">No file chosen</span>
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" data-step="2">
+                            <h2>Education</h2>
+                            <div id="educationEntries">
+                                <div class="education-entry card">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Qualification <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-graduation-cap input-icon"></i>
+                                                <input type="text" name="qualification[]" placeholder="e.g. Bachelor of Science" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Year of Passing <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-calendar input-icon"></i>
+                                                <input type="number" name="year[]" placeholder="e.g. 2022" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Grade/Percentage <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-star input-icon"></i>
+                                                <input type="text" name="grade[]" placeholder="e.g. 3.8 GPA or 85%" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>School/Institution <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-university input-icon"></i>
+                                                <input type="text" name="school[]" placeholder="e.g. Harvard University" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" id="addEducation" class="add-btn">
+                                <i class="fas fa-plus"></i> Add Education
+                            </button>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" data-step="3">
+                            <h2>Experience</h2>
+                            <div id="experienceEntries">
+                                <div class="experience-entry card">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Company Name <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-building input-icon"></i>
+                                                <input type="text" name="company[]" placeholder="e.g. Google" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>Your Role <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-briefcase input-icon"></i>
+                                                <input type="text" name="role[]" placeholder="e.g. Software Engineer" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Start Date <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-calendar-alt input-icon"></i>
+                                                <input type="text" name="startDate[]" placeholder="MM/YYYY" required>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label>End Date <span class="required">*</span></label>
+                                            <div class="input-group">
+                                                <i class="fas fa-calendar-check input-icon"></i>
+                                                <input type="text" name="endDate[]" placeholder="MM/YYYY or Present" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <label>Key Responsibilities <span class="required">*</span></label>
+                                        <div class="input-group textarea-group">
+                                            <i class="fas fa-tasks input-icon"></i>
+                                            <textarea name="responsibilities[]" placeholder="Describe your key responsibilities and achievements" rows="3" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" id="addExperience" class="add-btn">
+                                <i class="fas fa-plus"></i> Add Experience
+                            </button>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="button" class="next-btn">Next <i class="fas fa-arrow-right"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="form-step" data-step="4">
+                            <div class="form-row">
+                                <div class="form-column">
+                                    <h2>Skills</h2>
+                                    <div id="skillsEntries" class="tags-container">
+                                        <div class="skill-entry">
+                                            <div class="input-group">
+                                                <i class="fas fa-code input-icon"></i>
+                                                <input type="text" name="skills[]" placeholder="Enter a skill (e.g. JavaScript)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="button" id="addSkill" class="add-btn">
+                                        <i class="fas fa-plus"></i> Add Skill
+                                    </button>
+                                </div>
+                                
+                                <div class="form-column">
+                                    <h2>Hobbies</h2>
+                                    <div id="hobbiesEntries" class="tags-container">
+                                        <div class="hobby-entry">
+                                            <div class="input-group">
+                                                <i class="fas fa-heart input-icon"></i>
+                                                <input type="text" name="hobbies[]" placeholder="Enter a hobby (e.g. Photography)" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <button type="button" id="addHobby" class="add-btn">
+                                        <i class="fas fa-plus"></i> Add Hobby
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="form-buttons">
+                                <button type="button" class="prev-btn"><i class="fas fa-arrow-left"></i> Previous</button>
+                                <button type="submit" class="submit-btn">Generate Resume <i class="fas fa-file-alt"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <div id="preview-section" class="tab-content">
+                    <div id="resumeOutput" class="resume-preview">
+                        <!-- Resume will be generated here -->
+                        <div class="resume-placeholder">
+                            <i class="fas fa-file-alt placeholder-icon"></i>
+                            <p>Your resume will appear here after you submit the form</p>
+                        </div>
+                    </div>
+                    
+                    <div id="shareDownloadContainer" class="share-download-container" style="display: none;">
+                        <div class="share-url">
+                            <div class="input-group">
+                                <i class="fas fa-link input-icon"></i>
+                                <input type="text" id="shareableUrl" readonly placeholder="Your shareable URL will appear here">
+                            </div>
+                            <button id="copyShareableUrl" class="action-btn">
+                                <i class="fas fa-copy"></i> Copy URL
+                            </button>
+                        </div>
+                        
+                        <button id="downloadResume" class="download-btn">
+                            <i class="fas fa-download"></i> Download Resume
+                        </button>
+                        
+                        <button id="printResume" class="print-btn">
+                            <i class="fas fa-print"></i> Print Resume
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>&copy; 2023 Professional Resume Builder by Taha Saif</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </footer>
+    </div>
     
-    <form id="resumeForm">
-        <fieldset>
-            <legend>Personal Information</legend>
-            <label for="username">Username:</label>
-            <input type="text" id="username" name="username" required>
-
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="phone">Mobile Number:</label>
-            <input type="tel" id="phone" name="phone" required>
-
-            <label for="address">Address:</label>
-            <input type="text" id="address" name="address" required>
-
-            <label for="profilePicture">Profile Picture:</label>
-            <input type="file" id="profilePicture" name="profilePicture" accept="image/*" required>
-        </fieldset>
-
-        <fieldset>
-            <legend>Education</legend>
-            <div id="educationEntries">
-                <div class="education-entry">
-                    <input type="text" name="qualification[]" placeholder="Qualification" required>
-                    <input type="number" name="year[]" placeholder="Year of Passing" required>
-                    <input type="text" name="grade[]" placeholder="Grade/Percentage" required>
-                    <input type="text" name="school[]" placeholder="School/Institution Name" required>
-                </div>
-            </div>
-            <button type="button" id="addEducation">Add Qualification</button>
-        </fieldset>
-
-        <fieldset>
-            <legend>Experience</legend>
-            <div id="experienceEntries">
-                <div class="experience-entry">
-                    <input type="text" name="company[]" placeholder="Company Name" required>
-                    <input type="text" name="role[]" placeholder="Your Role" required>
-                    <input type="text" name="startDate[]" placeholder="Start Date (MM/YYYY)" required>
-                    <input type="text" name="endDate[]" placeholder="End Date (MM/YYYY or Present)" required>
-                    <textarea name="responsibilities[]" placeholder="Key Responsibilities" rows="3" required></textarea>
-                </div>
-            </div>
-            <button type="button" id="addExperience">Add Experience</button>
-        </fieldset>
-
-        <fieldset>
-            <legend>Skills</legend>
-            <div id="skillsEntries">
-                <input type="text" name="skills[]" placeholder="Enter a skill" required>
-            </div>
-            <button type="button" id="addSkill">Add Skill</button>
-        </fieldset>
-
-        <fieldset>
-            <legend>Hobbies</legend>
-            <div id="hobbiesEntries">
-                <input type="text" name="hobbies[]" placeholder="Enter a hobby" required>
-            </div>
-            <button type="button" id="addHobby">Add Hobby</button>
-        </fieldset>
-
-        <button type="submit">Generate Your Resume</button>
-    </form>
-
-    <div id="resumeOutput">
-        <!-- Resume will be generated here -->
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle toast-icon"></i>
+            <div class="toast-message">Success! Your resume has been generated.</div>
+        </div>
+        <div class="toast-progress"></div>
     </div>
-
-    <div id="shareDownloadContainer" style="display: none;">
-        <input type="text" id="shareableUrl" readonly>
-        <button id="copyShareableUrl">Copy Shareable URL</button>
-        <button id="downloadResume">Download Resume</button>
-    </div>
-
-    <footer>
-        <p>Made by Taha Saif</p>
-    </footer>
-
+    
     <script src="script.js"></script>
 </body>
 </html>
